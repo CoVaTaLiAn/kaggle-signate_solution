@@ -1,0 +1,11 @@
+# コンペのデータ・中間ファイル・提出ファイルはコミットしない（データは再配布不可）
+**/data/
+*.csv
+!**/experiments.csv
+!**/model_scores.csv
+**/exp/preds/
+**/exp/preds_chk/
+*.pkl
+__pycache__/
+catboost_info/
+.ipynb_checkpoints/
