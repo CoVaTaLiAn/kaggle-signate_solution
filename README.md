@@ -6,7 +6,7 @@ Kaggle・SIGNATE のコンペの解法と実験記録。
 
 | コンペ | 課題 | 評価 | 検証スコア | フォルダ |
 |---|---|---|---|---|
-| SIGNATE Jリーグの観客動員数予測 | 2014年後半戦の観客動員数 | RMSE | 3,099 | [`signate/jleague_attendance`](signate/jleague_attendance) |
+| SIGNATE Jリーグの観客動員数予測 | 2014年後半戦の観客動員数 | RMSE | 検証 3,099 / 暫定 3,123 | [`signate/jleague_attendance`](signate/jleague_attendance) |
 
 ## 共通
 
