@@ -24,18 +24,25 @@
 2. **日付ごとの集計**: その日の携帯電話の比率、連絡手段不明の比率、過去に接触した客の比率、通話時間・接触回数の平均、日付内での通話時間の順位
 3. **性質の違うモデル（LightGBM・CatBoost）の順位平均**（+0.0006）
 
+![日付ごとの件数と成約率](figs/date_count.png)
+
+データの傾向: 成約を左右するのは通話時間（10分超で 44〜60%）、前回キャンペーンの結果（前回成約なら 64.8%）、時期（5月は 6.8%、3・9・10・12月は 44〜51%）。年齢では 25歳以下と 61歳以上、職業では学生・退職者が高い。
+
+詳しい経緯は [`exp/experiments.md`](exp/experiments.md)（数値は `exp/experiments.csv`）、データの傾向は [`report.md`](report.md)（画像入りで単体で開ける [`report.html`](report.html) もある）。
+
 ## フォルダ構成
 
 | パス | 内容 |
 |---|---|
 | `data/` | コンペのデータを置く（コミットしない）。`train.csv` `test.csv` `submit_sample.csv` |
+| `report.md` / `report.html` / `figs/` / `insights.md` | 初期分析のレポート（データの傾向、考察、ベースライン） |
 | `exp/lib.py` | 共通部品（読み込み、特徴量、層化5分割CV、LightGBM・CatBoost） |
 | `exp/r01_baseline.py` | 基準モデル |
 | `exp/r02_date_count.py` | 日付ごとの集計特徴量 |
 | `exp/r03_models.py` | モデルの設定違い（予測を `exp/preds/` に保存） |
 | `exp/blend.py` | 保存した予測の組み合わせを評価 |
 | `exp/final.py` | 提出ファイルの作成 |
-| `exp/experiments.csv` | 全実験の CV AUC |
+| `exp/experiments.md` / `.csv` | 全実験の記録（狙い・結果・判断）と CV AUC |
 
 ## 再現手順
 
@@ -45,4 +52,12 @@ pip install pandas numpy scipy scikit-learn lightgbm catboost
 cd exp
 python3 r03_models.py      # LightGBM 3種・CatBoost 2種（CPU 4コアで十数分）
 python3 final.py           # → ../submit_blend4.csv
+```
+
+レポート（`report.md`）は、リポジトリ直下の `tools/eda_baseline.py` で作成した:
+
+```bash
+python3 ../../tools/eda_baseline.py run --train data/train.csv --test data/test.csv \
+  --target y --id id --metric auc --out . --title "銀行の顧客ターゲティング"
+python3 ../../tools/eda_baseline.py render --out .   # insights.md を反映
 ```
