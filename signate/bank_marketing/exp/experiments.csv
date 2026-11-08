@@ -1,0 +1,12 @@
+name,cv_auc
+lgb_raw,0.93519
+lgb_fe,0.93723
+lgb_date1,0.93892
+cat_fe,0.93579
+lgb_date2,0.93953
+lgb_date3,0.94051
+lgb_l15,0.94129
+lgb_l63,0.94110
+lgb_l31_ff5,0.94137
+cat_d6,0.94132
+cat_d8,0.94125
